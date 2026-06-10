@@ -398,3 +398,23 @@ def ai_classify(req: ClassifyRequest, db: Session = Depends(get_db)):
             status_code=500,
             detail=f"AI returned malformed response: {e}",
         )
+
+
+# ---------- /ai/agent — tool-using agent over Article + Series ----------
+
+from agent import run_agent
+
+
+class AgentRequest(BaseModel):
+    message: str
+
+
+@app.post("/ai/agent")
+def ai_agent(req: AgentRequest, db: Session = Depends(get_db)):
+    """Natural-language agent that can read, create, and update articles
+    and series via tool use. Returns the model's final reply, the full
+    agent_steps log, and the iteration count.
+
+    See agent.py for tool schemas, tool functions, and the run_agent loop.
+    """
+    return run_agent(req.message, db)

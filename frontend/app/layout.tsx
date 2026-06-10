@@ -45,6 +45,12 @@ export default function RootLayout({
               Articles
             </Link>
             <Link
+              href="/ai"
+              className="text-gray-700 hover:text-blue-600"
+            >
+              ✨ AI
+            </Link>
+            <Link
               href="/articles/new"
               className="ml-auto bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm"
             >
