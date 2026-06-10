@@ -101,19 +101,10 @@ This is the same `tool_use` loop pattern from Lab 6, retargeted at `Article`/`Se
 | AI: Claude API integrated thoughtfully | 10 | ✅ 3 structured-output endpoints (JSON schema enforced) + 1 tool-use agent; Haiku 4.5 for cost |
 | Docker: Dockerfiles + compose, starts clean | 5 | ✅ `api/Dockerfile`, `frontend/Dockerfile`, root `docker-compose.yml` with healthcheck on db |
 | **Presentation (live in class)** | | |
-| Live demo via `docker compose up` | 5 | 🎤 5-min script below |
-| Clear explanation of problem & solution | 5 | 🎤 In script |
-| Technical highlight clearly explained | 5 | 🎤 Agent loop + grounding-not-recall principle |
+| Live demo via `docker compose up` | 5 | Live in class |
+| Clear explanation of problem & solution | 5 | Live in class |
+| Technical highlight clearly explained | 5 | Live in class |
 | **Total** | **100** | |
-
-## 5-minute demo script
-
-| Time | Beat |
-|---|---|
-| **0:00 – 0:30** | *Problem.* I write a lot of long-form Bitcoin protocol articles, scattered across series. When I need to find *"where exactly did I cover Taproot control blocks?"*, grep-by-title doesn't scale. |
-| **0:30 – 3:30** | *Live demo via `docker compose up --build`.* Open `/articles` → browse the archive. Open `/ai/search` → query *"Taproot control blocks"* → AI ranks matches and tells me WHY each one is relevant. Switch to **Summarize** → pick SIGHASH_ANYPREVOUT → 200-word summary + concept tags. Switch to **Classify** → paste a candidate new-article title → AI tells me which series it belongs in. Switch to **Agent** → *"find Taproot articles and tell me my biggest series"* → multi-step tool call, expand the accordion to show the actual `list_articles` + `list_series` calls. |
-| **3:30 – 4:30** | *Technical highlight.* The agent loop is ~30 lines: same `tool_use` pattern from Lab 6, but with article/series tools. The real engineering is in the tool *descriptions* — single sentences like *"if the user mentions a series by name, look up the id with list_series first; don't fabricate"* are what make the agent safe instead of confident-but-wrong. |
-| **4:30 – 5:00** | *Next.* pgvector embeddings over actual article body text (currently I only ground in title/subtitle metadata). Then the same RAG pattern, retargeted at BIPs and papers, becomes my real day-job tool. |
 
 ## Notes
 
